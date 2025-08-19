@@ -219,12 +219,11 @@ body.dark-mode .navbar {
 .pokemon-avatar {
     order: 2;
     justify-self: end;
-    margin-left: 20px;
+    margin-left: 40px;
     max-width: 400px;
     overflow: visible;
     position: relative;
     z-index: 1;
-    border: 2px solid red; /* Temporary debug border */
 }
 
 .hero-content {
