@@ -1,0 +1,41 @@
+{
+  "name": "pokemon-portfolio",
+  "version": "1.0.0",
+  "description": "A fun and interactive software engineering portfolio with a Pokémon theme featuring Leafeon and Umbreon",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'Portfolio is ready! Open index.html in your browser.'"
+  },
+  "keywords": [
+    "portfolio",
+    "pokemon",
+    "leafeon",
+    "umbreon",
+    "software-engineer",
+    "web-development",
+    "responsive",
+    "dark-mode",
+    "light-mode",
+    "animations"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/pokemon-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/pokemon-portfolio/issues"
+  },
+  "homepage": "https://github.com/yourusername/pokemon-portfolio#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
