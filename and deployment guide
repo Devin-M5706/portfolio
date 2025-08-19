@@ -1,0 +1,90 @@
+[1mdiff --git a/DEPLOYMENT.md b/DEPLOYMENT.md[m
+[1mindex dda259b..dcd3d52 100644[m
+[1m--- a/DEPLOYMENT.md[m
+[1m+++ b/DEPLOYMENT.md[m
+[36m@@ -47,3 +47,4 @@[m
+ - Check GitHub Actions tab for deployment status[m
+ - Ensure repository is public[m
+ - Verify Pages source is set to "GitHub Actions"[m
+[41m+[m
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 0943885..94fc53f 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -53,8 +53,8 @@[m
+                 </div>[m
+                 <h1 class="hero-title">[m
+                     <span class="greeting">Hello, I'm</span>[m
+[31m-                    <span class="name">Your Name</span>[m
+[31m-                    <span class="title">Software Engineer</span>[m
+[32m+[m[32m                    <span class="name">Devin Myers</span>[m
+[32m+[m[32m                    <span class="Who I am">Computer Science Student @ PSU </span>[m
+                 </h1>[m
+                 <p class="hero-description">[m
+                     Crafting digital experiences with code, creativity, and a passion for innovation. [m
+[36m@@ -89,7 +89,7 @@[m
+             <div class="about-content">[m
+                 <div class="about-text">[m
+                     <p>[m
+[31m-                        I'm a passionate software engineer who believes in the power of clean code, [m
+[32m+[m[32m                        I'm a passionate CS Student who believes in the power breaking and rebuilding,[m[41m [m
+                         user experience, and continuous learning. Just like Pokémon trainers who [m
+                         build strong teams, I assemble robust applications that solve real-world problems.[m
+                     </p>[m
+[36m@@ -285,8 +285,8 @@[m
+                         </div>[m
+                     </div>[m
+                     <div class="project-content">[m
+[31m-                        <h3>AI Chatbot</h3>[m
+[31m-                        <p>An intelligent chatbot powered by machine learning that provides customer support and answers frequently asked questions.</p>[m
+[32m+[m[32m                        <h3>Sign Language Interpreter</h3>[m
+[32m+[m[32m                        <p>A fullstack web application that translates sign language to text using computer vision and machine learning.</p>[m
+                         <div class="project-tech">[m
+                             <span class="tech-tag">Python</span>[m
+                             <span class="tech-tag">TensorFlow</span>[m
+[36m@@ -312,28 +312,28 @@[m
+                         <i class="fas fa-envelope"></i>[m
+                         <div>[m
+                             <h3>Email</h3>[m
+[31m-                            <p>your.email@example.com</p>[m
+[32m+[m[32m                            <p>Dmm8007@psu.edu</p>[m
+                         </div>[m
+                     </div>[m
+                     <div class="contact-item">[m
+                         <i class="fab fa-linkedin"></i>[m
+                         <div>[m
+                             <h3>LinkedIn</h3>[m
+[31m-                            <p>linkedin.com/in/yourprofile</p>[m
+[32m+[m[32m                            <p>linkedin.com/in/devin-myers-0230552a5</p>[m
+                         </div>[m
+                     </div>[m
+                     <div class="contact-item">[m
+                         <i class="fab fa-github"></i>[m
+                         <div>[m
+                             <h3>GitHub</h3>[m
+[31m-                            <p>github.com/yourusername</p>[m
+[32m+[m[32m                            <p>github.com/Devin-M5706</p>[m
+                         </div>[m
+                     </div>[m
+                     <div class="contact-item">[m
+                         <i class="fas fa-map-marker-alt"></i>[m
+                         <div>[m
+                             <h3>Location</h3>[m
+[31m-                            <p>Your City, Country</p>[m
+[32m+[m[32m                            <p>Richmond,VA</p>[m
+                         </div>[m
+                     </div>[m
+                 </div>[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 315bbd6..fc3816d 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -21,7 +21,7 @@[m
+     "light-mode",[m
+     "animations"[m
+   ],[m
+[31m-  "author": "Your Name",[m
+[32m+[m[32m  "author": "Devin Myers",[m
+   "license": "MIT",[m
+   "repository": {[m
+     "type": "git",[m

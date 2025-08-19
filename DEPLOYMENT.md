@@ -47,3 +47,4 @@
 - Check GitHub Actions tab for deployment status
 - Ensure repository is public
 - Verify Pages source is set to "GitHub Actions"
+
