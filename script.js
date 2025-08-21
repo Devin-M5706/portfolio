@@ -744,3 +744,172 @@ console.log('🎮 Enhanced Pokémon Portfolio loaded successfully! Gotta catch \
 console.log('💡 Pro tip: Try the Konami code (↑↑↓↓←→←→BA) for a surprise!');
 console.log('🎨 Theme toggle available in the top right corner');
 console.log('📱 Fully responsive and accessible design');
+
+// Interactive Tech Background Functions
+function createMatrixRain() {
+    const matrixRain = document.querySelector('.matrix-rain');
+    if (!matrixRain) return;
+    
+    const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const columns = Math.floor(window.innerWidth / 20);
+    
+    for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i * 20) + 'px';
+        column.style.animationDelay = (Math.random() * 8) + 's';
+        
+        // Generate random characters for each column
+        let columnText = '';
+        for (let j = 0; j < 20; j++) {
+            columnText += characters.charAt(Math.random() * characters.length) + '<br>';
+        }
+        column.innerHTML = columnText;
+        
+        matrixRain.appendChild(column);
+    }
+}
+
+function createFloatingElements() {
+    // Add more floating code snippets dynamically
+    const codeSnippets = [
+        'npm install awesome',
+        'git commit -m "innovation"',
+        'docker run portfolio',
+        'python -m pip install future',
+        'java -jar success.jar',
+        'react.createElement("awesome")',
+        'node server.js',
+        'git push origin main'
+    ];
+    
+    codeSnippets.forEach((snippet, index) => {
+        if (index < 4) return; // Only add extras
+        
+        const codeElement = document.createElement('div');
+        codeElement.className = 'floating-code';
+        codeElement.textContent = snippet;
+        codeElement.style.left = (Math.random() * 80 + 10) + '%';
+        codeElement.style.top = (Math.random() * 80 + 10) + '%';
+        codeElement.style.animationDelay = (Math.random() * 20) + 's';
+        codeElement.style.animationDuration = (15 + Math.random() * 10) + 's';
+        
+        document.body.appendChild(codeElement);
+    });
+}
+
+function createTechParticles() {
+    const techSymbols = ['⚡', '🔧', '💻', '🚀', '🌐', '🔮', '⚙️', '🎯', '💡', '🔬'];
+    
+    for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'tech-icon';
+        particle.textContent = techSymbols[Math.floor(Math.random() * techSymbols.length)];
+        particle.style.left = (Math.random() * 80 + 10) + '%';
+        particle.style.top = (Math.random() * 80 + 10) + '%';
+        particle.style.animationDelay = (Math.random() * 15) + 's';
+        particle.style.animationDuration = (12 + Math.random() * 8) + 's';
+        
+        document.body.appendChild(particle);
+    }
+}
+
+function addInteractiveHoverEffects() {
+    // Add hover effects to sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.addEventListener('mouseenter', () => {
+            // Speed up background animations on hover
+            const floatingElements = document.querySelectorAll('.floating-code, .tech-icon');
+            floatingElements.forEach(el => {
+                el.style.animationDuration = (parseFloat(el.style.animationDuration) * 0.7) + 's';
+            });
+        });
+        
+        section.addEventListener('mouseleave', () => {
+            // Reset animation speeds
+            const floatingElements = document.querySelectorAll('.floating-code, .tech-icon');
+            floatingElements.forEach(el => {
+                el.style.animationDuration = '';
+            });
+        });
+    });
+}
+
+function createCircuitConnections() {
+    const circuitPattern = document.querySelector('.circuit-pattern');
+    if (!circuitPattern) return;
+    
+    // Add dynamic circuit connections
+    setInterval(() => {
+        const connection = document.createElement('div');
+        connection.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: circuit-pulse 2s ease-out forwards;
+            pointer-events: none;
+        `;
+        
+        circuitPattern.appendChild(connection);
+        
+        setTimeout(() => {
+            if (connection.parentNode) {
+                connection.remove();
+            }
+        }, 2000);
+    }, 3000);
+}
+
+// Add circuit pulse animation to CSS
+const circuitPulseStyles = document.createElement('style');
+circuitPulseStyles.textContent = `
+    @keyframes circuit-pulse {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(20);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(circuitPulseStyles);
+
+// Initialize interactive background
+window.addEventListener('load', () => {
+    createMatrixRain();
+    createFloatingElements();
+    createTechParticles();
+    addInteractiveHoverEffects();
+    createCircuitConnections();
+    
+    // Theme change event listener for background adjustments
+    window.addEventListener('themeChange', (event) => {
+        if (event.detail.theme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+});
+
+// Performance optimization: Pause animations when not visible
+let isPageVisible = true;
+document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden;
+    const animatedElements = document.querySelectorAll('.floating-code, .tech-icon, .matrix-column');
+    
+    animatedElements.forEach(el => {
+        if (isPageVisible) {
+            el.style.animationPlayState = 'running';
+        } else {
+            el.style.animationPlayState = 'paused';
+        }
+    });
+});
