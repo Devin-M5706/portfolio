@@ -1,3 +1,4 @@
+// Enhanced Portfolio JavaScript with Professional Polish
 // Theme Toggle Functionality
 const themeBtn = document.getElementById('themeBtn');
 const body = document.body;
@@ -9,16 +10,25 @@ body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
 updateThemeIcon();
 
 themeBtn.addEventListener('click', () => {
+    // Add click feedback
+    themeBtn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        themeBtn.style.transform = '';
+    }, 150);
+    
     body.classList.toggle('dark-mode');
     const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
     localStorage.setItem('theme', currentTheme);
     updateThemeIcon();
     
-    // Add theme change animation
-    body.style.transition = 'all 0.3s ease';
+    // Enhanced theme change animation
+    body.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
     setTimeout(() => {
         body.style.transition = '';
-    }, 300);
+    }, 400);
+    
+    // Trigger theme change event for other components
+    window.dispatchEvent(new CustomEvent('themeChange', { detail: { theme: currentTheme } }));
 });
 
 function updateThemeIcon() {
@@ -31,13 +41,25 @@ function updateThemeIcon() {
     }
 }
 
-// Mobile Navigation Toggle
+// Mobile Navigation Toggle with Enhanced UX
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    // Animate hamburger lines
+    const spans = hamburger.querySelectorAll('span');
+    if (hamburger.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+    } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    }
 });
 
 // Close mobile menu when clicking on a link
@@ -45,18 +67,41 @@ document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         hamburger.classList.remove('active');
+        
+        // Reset hamburger animation
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
     });
 });
 
-// Smooth Scrolling for Navigation Links
+// Enhanced Smooth Scrolling with Easing
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        const offsetTop = section.offsetTop - 70; // Account for fixed navbar
-        window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-        });
+        const offsetTop = section.offsetTop - 80; // Account for fixed navbar
+        const startPosition = window.pageYOffset;
+        const distance = offsetTop - startPosition;
+        const duration = 1000;
+        let start = null;
+        
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        
+        function easeInOutCubic(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        }
+        
+        requestAnimationFrame(animation);
     }
 }
 
@@ -82,36 +127,65 @@ document.querySelectorAll('.btn').forEach(btn => {
     });
 });
 
-// Skill Bars Animation
+// Enhanced Skill Bars Animation with Staggered Effect
 function animateSkillBars() {
     const skillItems = document.querySelectorAll('.skill-item');
     
-    skillItems.forEach(item => {
+    skillItems.forEach((item, index) => {
         const progressBar = item.querySelector('.skill-progress');
         const skillLevel = item.getAttribute('data-level');
         
         if (progressBar && skillLevel) {
+            // Staggered animation
             setTimeout(() => {
                 progressBar.style.width = skillLevel + '%';
-            }, 500);
+                
+                // Add completion animation
+                progressBar.style.animation = 'skillComplete 0.6s ease-out';
+                setTimeout(() => {
+                    progressBar.style.animation = '';
+                }, 600);
+            }, index * 200);
         }
     });
 }
 
-// Intersection Observer for Animations
+// Enhanced Intersection Observer with Better Performance
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
+            // Add staggered animation classes
+            if (entry.target.classList.contains('skills-grid')) {
+                entry.target.querySelectorAll('.skill-category').forEach((category, index) => {
+                    setTimeout(() => {
+                        category.classList.add('fade-in-up');
+                    }, index * 200);
+                });
+                animateSkillBars();
+            } else if (entry.target.classList.contains('projects-grid')) {
+                entry.target.querySelectorAll('.project-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('fade-in-up');
+                    }, index * 150);
+                });
+            } else if (entry.target.classList.contains('stats')) {
+                entry.target.querySelectorAll('.stat').forEach((stat, index) => {
+                    setTimeout(() => {
+                        stat.classList.add('fade-in-up');
+                    }, index * 100);
+                });
+            } else {
+                entry.target.classList.add('fade-in-up');
+            }
             
             // Animate skill bars when skills section is visible
             if (entry.target.id === 'skills') {
-                animateSkillBars();
+                // Animation already handled above
             }
         }
     });
@@ -122,28 +196,47 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Parallax Effect for Floating Pokéballs
-window.addEventListener('scroll', () => {
+// Enhanced Parallax Effect for Floating Pokéballs
+let ticking = false;
+function updateParallax() {
     const scrolled = window.pageYOffset;
     const pokeballs = document.querySelectorAll('.pokeball');
     
     pokeballs.forEach((pokeball, index) => {
-        const speed = 0.5 + (index * 0.2);
+        const speed = 0.3 + (index * 0.15);
         const yPos = -(scrolled * speed);
-        pokeball.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+        const rotation = scrolled * 0.05;
+        pokeball.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
     });
-});
+    
+    ticking = false;
+}
 
-// Typing Effect for Hero Title
+function requestParallaxUpdate() {
+    if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+// Enhanced Typing Effect for Hero Title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
+    element.style.borderRight = '3px solid var(--primary-color)';
     
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
             setTimeout(type, speed);
+        } else {
+            // Remove cursor after typing is complete
+            setTimeout(() => {
+                element.style.borderRight = 'none';
+            }, 1000);
         }
     }
     
@@ -156,12 +249,12 @@ window.addEventListener('load', () => {
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         setTimeout(() => {
-            typeWriter(heroTitle, originalText, 150);
-        }, 1000);
+            typeWriter(heroTitle, originalText, 120);
+        }, 1200);
     }
 });
 
-// Form Submission Handler
+// Enhanced Form Submission Handler with Better UX
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -174,22 +267,43 @@ if (contactForm) {
         const subject = formData.get('subject');
         const message = formData.get('message');
         
-        // Simple validation
+        // Enhanced validation
         if (!name || !email || !subject || !message) {
             showNotification('Please fill in all fields', 'error');
             return;
         }
         
-        // Simulate form submission
-        showNotification('Message sent successfully!', 'success');
-        contactForm.reset();
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            return;
+        }
         
-        // In a real application, you would send this data to your backend
-        console.log('Form submitted:', { name, email, subject, message });
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission with delay
+        setTimeout(() => {
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // In a real application, you would send this data to your backend
+            console.log('Form submitted:', { name, email, subject, message });
+        }, 2000);
     });
 }
 
-// Notification System
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Enhanced Notification System
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -207,99 +321,100 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add styles
+    // Enhanced styles with better positioning and animations
     notification.style.cssText = `
         position: fixed;
         top: 100px;
-        right: 20px;
+        right: 24px;
         background: ${type === 'success' ? 'var(--success-color)' : type === 'error' ? 'var(--error-color)' : 'var(--info-color)'};
         color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        padding: 18px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         z-index: 10000;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
-        max-width: 300px;
+        transform: translateX(400px) scale(0.8);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: 350px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
     `;
     
     // Add to page
     document.body.appendChild(notification);
     
-    // Animate in
+    // Animate in with spring effect
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        notification.style.transform = 'translateX(0) scale(1)';
     }, 100);
     
-    // Remove after 5 seconds
+    // Remove after 6 seconds with smooth exit
     setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
+        notification.style.transform = 'translateX(400px) scale(0.8)';
+        notification.style.opacity = '0';
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.remove();
             }
-        }, 300);
-    }, 5000);
+        }, 400);
+    }, 6000);
 }
 
-// Add notification styles to head
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    .notification-content {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .notification-content i {
-        font-size: 1.2rem;
-    }
-`;
-document.head.appendChild(notificationStyles);
-
-// Particle Effect for Hero Section
+// Enhanced Particle Effect for Hero Section
 function createParticles() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
-    for (let i = 0; i < 20; i++) {
+    // Remove existing particles
+    const existingParticles = hero.querySelectorAll('.particle');
+    existingParticles.forEach(particle => particle.remove());
+    
+    for (let i = 0; i < 25; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.cssText = `
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
+            width: ${4 + Math.random() * 3}px;
+            height: ${4 + Math.random() * 3}px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             border-radius: 50%;
-            opacity: 0.6;
+            opacity: 0.4;
             pointer-events: none;
-            animation: particle-float ${3 + Math.random() * 4}s linear infinite;
+            animation: particle-float ${4 + Math.random() * 3}s linear infinite;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
             animation-delay: ${Math.random() * 2}s;
+            filter: blur(0.5px);
         `;
         hero.appendChild(particle);
     }
 }
 
-// Add particle animation styles
+// Enhanced particle animation styles
 const particleStyles = document.createElement('style');
 particleStyles.textContent = `
     @keyframes particle-float {
         0% {
-            transform: translateY(0) rotate(0deg);
+            transform: translateY(0) rotate(0deg) scale(0);
             opacity: 0;
         }
         10% {
-            opacity: 0.6;
+            opacity: 0.4;
+            transform: translateY(0) rotate(0deg) scale(1);
         }
         90% {
-            opacity: 0.6;
+            opacity: 0.4;
+            transform: translateY(-80vh) rotate(180deg) scale(1);
         }
         100% {
-            transform: translateY(-100vh) rotate(360deg);
+            transform: translateY(-100vh) rotate(360deg) scale(0);
             opacity: 0;
         }
+    }
+    
+    @keyframes skillComplete {
+        0% { transform: scaleX(0.8); }
+        50% { transform: scaleX(1.1); }
+        100% { transform: scaleX(1); }
     }
 `;
 document.head.appendChild(particleStyles);
@@ -307,10 +422,10 @@ document.head.appendChild(particleStyles);
 // Initialize particles when page loads
 window.addEventListener('load', createParticles);
 
-// Add hover effects to project cards
+// Enhanced hover effects for project cards
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-15px) scale(1.02)';
+        card.style.transform = 'translateY(-16px) scale(1.02)';
     });
     
     card.addEventListener('mouseleave', () => {
@@ -318,10 +433,10 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Add click effect to buttons
+// Enhanced click effect to buttons with better ripple
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
-        // Create ripple effect
+        // Create enhanced ripple effect
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -334,10 +449,10 @@ document.querySelectorAll('.btn').forEach(btn => {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: rgba(255, 255, 255, 0.3);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
             border-radius: 50%;
             transform: scale(0);
-            animation: ripple 0.6s linear;
+            animation: ripple 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
         `;
         
@@ -345,11 +460,11 @@ document.querySelectorAll('.btn').forEach(btn => {
         
         setTimeout(() => {
             ripple.remove();
-        }, 600);
+        }, 800);
     });
 });
 
-// Add ripple animation styles
+// Enhanced ripple animation styles
 const rippleStyles = document.createElement('style');
 rippleStyles.textContent = `
     @keyframes ripple {
@@ -366,7 +481,7 @@ rippleStyles.textContent = `
 `;
 document.head.appendChild(rippleStyles);
 
-// Add scroll progress indicator
+// Enhanced scroll progress indicator
 function createScrollProgress() {
     const progressBar = document.createElement('div');
     progressBar.className = 'scroll-progress';
@@ -375,57 +490,119 @@ function createScrollProgress() {
         top: 0;
         left: 0;
         width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
         z-index: 10001;
         transition: width 0.1s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     `;
     document.body.appendChild(progressBar);
     
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    function updateProgress() {
         const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
         progressBar.style.width = scrolled + '%';
-    });
+        ticking = false;
+    }
+    
+    function requestProgressUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateProgress);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestProgressUpdate, { passive: true });
 }
 
 // Initialize scroll progress
 window.addEventListener('load', createScrollProgress);
 
-// Add loading animation
+// Enhanced loading animation
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     
     setTimeout(() => {
         document.body.style.opacity = '1';
-    }, 100);
+    }, 200);
 });
 
-// Add keyboard navigation support
+// Enhanced keyboard navigation support
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         // Close mobile menu
         navMenu.classList.remove('active');
         hamburger.classList.remove('active');
+        
+        // Reset hamburger animation
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
     }
     
     if (e.key === 't' && e.ctrlKey) {
         e.preventDefault();
         themeBtn.click();
     }
+    
+    // Navigation with arrow keys
+    if (e.key === 'ArrowDown' && e.ctrlKey) {
+        e.preventDefault();
+        const currentSection = getCurrentSection();
+        const nextSection = getNextSection(currentSection);
+        if (nextSection) scrollToSection(nextSection.id);
+    }
+    
+    if (e.key === 'ArrowUp' && e.ctrlKey) {
+        e.preventDefault();
+        const currentSection = getCurrentSection();
+        const prevSection = getPreviousSection(currentSection);
+        if (prevSection) scrollToSection(prevSection.id);
+    }
 });
 
-// Add accessibility improvements
-document.addEventListener('DOMContentLoaded', () => {
-    // Add ARIA labels
-    themeBtn.setAttribute('aria-label', 'Toggle dark mode');
+// Helper functions for keyboard navigation
+function getCurrentSection() {
+    const sections = document.querySelectorAll('section');
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
     
-    // Add focus indicators
+    for (let section of sections) {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+            return section;
+        }
+    }
+    return sections[0];
+}
+
+function getNextSection(currentSection) {
+    const sections = Array.from(document.querySelectorAll('section'));
+    const currentIndex = sections.indexOf(currentSection);
+    return sections[currentIndex + 1] || null;
+}
+
+function getPreviousSection(currentSection) {
+    const sections = Array.from(document.querySelectorAll('section'));
+    const currentIndex = sections.indexOf(currentSection);
+    return sections[currentIndex - 1] || null;
+}
+
+// Enhanced accessibility improvements
+document.addEventListener('DOMContentLoaded', () => {
+    // Add ARIA labels and roles
+    themeBtn.setAttribute('aria-label', 'Toggle dark mode');
+    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
+    
+    // Add focus indicators and keyboard navigation
     const focusableElements = document.querySelectorAll('a, button, input, textarea, select');
     focusableElements.forEach(element => {
         element.addEventListener('focus', () => {
             element.style.outline = '2px solid var(--primary-color)';
-            element.style.outlineOffset = '2px';
+            element.style.outlineOffset = '3px';
         });
         
         element.addEventListener('blur', () => {
@@ -433,9 +610,33 @@ document.addEventListener('DOMContentLoaded', () => {
             element.style.outlineOffset = '';
         });
     });
+    
+    // Add skip to content link for accessibility
+    const skipLink = document.createElement('a');
+    skipLink.href = '#home';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 10000;
+        transition: top 0.3s ease;
+    `;
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '6px';
+    });
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+    });
+    document.body.insertBefore(skipLink, document.body.firstChild);
 });
 
-// Performance optimization: Debounce scroll events
+// Performance optimization: Enhanced debounce for scroll events
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -448,14 +649,14 @@ function debounce(func, wait) {
     };
 }
 
-// Apply debouncing to scroll events
+// Apply enhanced debouncing to scroll events
 const debouncedScrollHandler = debounce(() => {
     // Handle scroll-based animations here
 }, 16);
 
-window.addEventListener('scroll', debouncedScrollHandler);
+window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
 
-// Add Easter egg: Konami code
+// Enhanced Easter egg: Konami code with better effects
 let konamiCode = [];
 const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
 
@@ -467,28 +668,79 @@ document.addEventListener('keydown', (e) => {
     }
     
     if (konamiCode.join(',') === konamiSequence.join(',')) {
-        // Konami code activated!
+        // Enhanced Konami code activation!
         showNotification('🎉 You found the secret! Pokémon Master! 🎉', 'success');
         
-        // Add some fun effects
-        document.body.style.animation = 'rainbow 2s infinite';
+        // Add enhanced fun effects
+        document.body.style.animation = 'rainbow 3s infinite';
+        
+        // Add particle explosion
+        createKonamiParticles();
         
         setTimeout(() => {
             document.body.style.animation = '';
-        }, 2000);
+        }, 3000);
         
         konamiCode = [];
     }
 });
 
-// Add rainbow animation for Easter egg
+// Enhanced Konami particle effect
+function createKonamiParticles() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: ${8 + Math.random() * 12}px;
+            height: ${8 + Math.random() * 12}px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: konami-explosion 2s ease-out forwards;
+            animation-delay: ${Math.random() * 0.5}s;
+        `;
+        document.body.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 2000);
+    }
+}
+
+// Enhanced rainbow animation for Easter egg
 const rainbowStyles = document.createElement('style');
 rainbowStyles.textContent = `
     @keyframes rainbow {
-        0% { filter: hue-rotate(0deg); }
-        100% { filter: hue-rotate(360deg); }
+        0% { filter: hue-rotate(0deg) brightness(1.2); }
+        25% { filter: hue-rotate(90deg) brightness(1.1); }
+        50% { filter: hue-rotate(180deg) brightness(1.2); }
+        75% { filter: hue-rotate(270deg) brightness(1.1); }
+        100% { filter: hue-rotate(360deg) brightness(1.2); }
+    }
+    
+    @keyframes konami-explosion {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1) translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px);
+            opacity: 0;
+        }
     }
 `;
 document.head.appendChild(rainbowStyles);
 
-console.log('🎮 Pokémon Portfolio loaded successfully! Gotta catch \'em all! 🌿✨');
+// Enhanced console message
+console.log('🎮 Enhanced Pokémon Portfolio loaded successfully! Gotta catch \'em all! 🌿✨');
+console.log('💡 Pro tip: Try the Konami code (↑↑↓↓←→←→BA) for a surprise!');
+console.log('🎨 Theme toggle available in the top right corner');
+console.log('📱 Fully responsive and accessible design');

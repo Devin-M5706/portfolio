@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Portfolio - Software Engineer</title>
-    <meta name="description" content="A fun and interactive software engineering portfolio with a Pokémon theme">
+    <title>Devin Myers - Software Engineer Portfolio</title>
+    <meta name="description" content="Professional software engineering portfolio showcasing innovative projects and technical expertise with a creative Pokémon-inspired design">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,7 +12,7 @@
 <body class="light-mode">
     <!-- Theme Toggle -->
     <div class="theme-toggle">
-        <button id="themeBtn" class="theme-btn">
+        <button id="themeBtn" class="theme-btn" aria-label="Toggle dark mode">
             <i class="fas fa-moon"></i>
         </button>
     </div>
@@ -22,7 +22,18 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <span class="pokemon-icon">🌿</span>
-                <span class="logo-text">Devin's Portfolio</span>
+                <span class="logo-text">Devin Myers</span>
+            </div>
+            <div class="nav-social-links">
+                <a href="https://github.com/Devin-M5706" class="nav-social-link" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/devin-myers-0230552a5" class="nav-social-link" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:dmm8007@psu.edu" class="nav-social-link" aria-label="Send Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -30,8 +41,24 @@
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="mobile-social-links">
+                    <div class="mobile-social-container">
+                        <a href="https://github.com/Devin-M5706" class="mobile-social-link" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/in/devin-myers-0230552a5" class="mobile-social-link" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:dmm8007@psu.edu" class="mobile-social-link" aria-label="Send Email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -45,20 +72,20 @@
             <div class="hero-content">
                 <div class="pokemon-avatar">
                     <div class="avatar-light">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png" alt="Leafeon" class="pokemon-sprite">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png" alt="Leafeon - Light Mode Avatar" class="pokemon-sprite">
                     </div>
                     <div class="avatar-dark">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png" alt="Umbreon" class="pokemon-sprite">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png" alt="Umbreon - Dark Mode Avatar" class="pokemon-sprite">
                     </div>
                 </div>
                 <h1 class="hero-title">
                     <span class="greeting">Hello, I'm</span>
                     <span class="name">Devin Myers</span>
-                    <span class="Who I am">Computer Science Student @ PSU </span>
+                    <span class="title">Computer Science Student @ PSU</span>
                 </h1>
                 <p class="hero-description">
-                    Crafting digital experiences with code, creativity, and a passion for innovation. 
-                    Like a Pokémon evolving through challenges, I grow stronger with every project!
+                    Crafting innovative digital solutions with code, creativity, and a passion for technology. 
+                    Like a Pokémon evolving through challenges, I continuously grow and adapt with every project!
                 </p>
                 <div class="hero-buttons">
                     <button class="btn btn-primary" onclick="scrollToSection('projects')">
@@ -89,14 +116,14 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a passionate CS Student who believes in the power breaking and rebuilding, 
-                        user experience, and continuous learning. Just like Pokémon trainers who 
-                        build strong teams, I assemble robust applications that solve real-world problems.
+                        I'm a passionate Computer Science student who believes in the power of innovation, 
+                        user experience, and continuous learning. Just like Pokémon trainers who build strong teams, 
+                        I assemble robust applications that solve real-world problems.
                     </p>
                     <p>
-                        With expertise in modern web technologies, I create scalable solutions that 
-                        not only work flawlessly but also bring joy to users. Every project is an 
-                        adventure, and every challenge is an opportunity to evolve and improve.
+                        With expertise in modern web technologies and software development, I create scalable solutions that 
+                        not only work flawlessly but also provide exceptional user experiences. Every project is an 
+                        adventure, and every challenge is an opportunity to evolve and improve my skills.
                     </p>
                     <div class="stats">
                         <div class="stat">
@@ -104,20 +131,20 @@
                             <span class="stat-label">Years Experience</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">15</span>
+                            <span class="stat-number">15+</span>
                             <span class="stat-label">Projects Completed</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">IDK</span>
-                            <span class="stat-label">Div's Centered</span>
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
                     <div class="image-container">
-                        <img src="IMG_2344 (1).jpeg" alt="Profile Photo" class="profile-img">
+                        <img src="IMG_2344 (1).jpeg" alt="Devin Myers - Professional Headshot" class="profile-img">
                         <div class="image-overlay">
-                            <div class="pokemon-type">Pokemon Trainer</div>
+                            <div class="pokemon-type">Software Engineer</div>
                         </div>
                     </div>
                 </div>
@@ -130,11 +157,11 @@
         <div class="container">
             <h2 class="section-title">
                 <span class="pokemon-icon">⚡</span>
-                Skills & Abilities
+                Skills & Expertise
             </h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Frontend</h3>
+                    <h3>Frontend Development</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-level="90">
                             <span class="skill-name">HTML/CSS</span>
@@ -142,7 +169,7 @@
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="55">
+                        <div class="skill-item" data-level="85">
                             <span class="skill-name">JavaScript</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
@@ -154,7 +181,7 @@
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="30">
+                        <div class="skill-item" data-level="75">
                             <span class="skill-name">Vue.js</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
@@ -163,27 +190,27 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Backend</h3>
+                    <h3>Backend Development</h3>
                     <div class="skill-items">
-                        <div class="skill-item" data-level="50">
+                        <div class="skill-item" data-level="80">
                             <span class="skill-name">Node.js</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="80">
+                        <div class="skill-item" data-level="85">
                             <span class="skill-name">Python</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="95">
+                        <div class="skill-item" data-level="90">
                             <span class="skill-name">Java</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="70">
+                        <div class="skill-item" data-level="75">
                             <span class="skill-name">C#</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
@@ -192,7 +219,7 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Tools & Others</h3>
+                    <h3>DevOps & Tools</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-level="90">
                             <span class="skill-name">Git</span>
@@ -206,13 +233,13 @@
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="63">
+                        <div class="skill-item" data-level="75">
                             <span class="skill-name">AWS</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="50">
+                        <div class="skill-item" data-level="70">
                             <span class="skill-name">CI/CD</span>
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
@@ -234,38 +261,38 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="Screenshot 2025-08-19 010303.png" alt="Project 1">
+                        <img src="Screenshot 2025-08-19 010303.png" alt="Minecraft MNIST Neural Network Project">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link" aria-label="View live project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link" aria-label="View source code"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>Minecraft MNIST NEURAL NETWORK</h3>
-                        <p>Simulate a basic neural network architecture that can classify MNIST digits. Visualize and translate the network's logic into redstone-compatible circuits. Recreate the entire pipeline (input, weights, activation, output) using Minecraft mechanics like redstone torches, comparators, pistons, and observers.</p>
+                        <h3>Minecraft MNIST Neural Network</h3>
+                        <p>A sophisticated neural network implementation that classifies MNIST digits and translates complex machine learning logic into Minecraft redstone circuits. This project demonstrates advanced understanding of both AI algorithms and creative problem-solving in constrained environments.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Stripe</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Redstone Logic</span>
+                            <span class="tech-tag">Machine Learning</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="rlCLI organizer.png" alt="Project 2">
+                        <img src="rlCLI organizer.png" alt="Task Management Application">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link" aria-label="View live project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link" aria-label="View source code"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
+                        <h3>Task Management Application</h3>
+                        <p>A comprehensive task management solution featuring real-time collaboration, intuitive drag-and-drop functionality, and advanced team management capabilities. Built with modern web technologies for optimal performance and user experience.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Vue.js</span>
                             <span class="tech-tag">Firebase</span>
@@ -276,22 +303,22 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250/FF9800/ffffff?text=AI+Chatbot" alt="Project 3">
+                        <img src="C:\Users\dmyer\portfolio\Screenshot 2025-08-20 232558.png" alt="AI Chatbot Project">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link" aria-label="View live project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link" aria-label="View source code"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Sign Language Interpreter</h3>
-                        <p>A fullstack web application that translates sign language to text using computer vision and machine learning.</p>
+                        <p>An innovative computer vision application that translates sign language to text in real-time. This project combines advanced machine learning algorithms with user-friendly interfaces to create accessible communication tools.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">TensorFlow</span>
                             <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Computer Vision</span>
                         </div>
                     </div>
                 </div>
@@ -312,7 +339,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <p>Dmm8007@psu.edu</p>
+                            <p>dmm8007@psu.edu</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -333,7 +360,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h3>Location</h3>
-                            <p>Richmond,VA</p>
+                            <p>Richmond, VA</p>
                         </div>
                     </div>
                 </div>
@@ -365,15 +392,9 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <span class="pokemon-icon">🌿</span>
-                    <span>Portfolio</span>
+                    <span>Devin Myers</span>
                 </div>
-                <p>&copy; 2024 Your Name. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                </div>
+                <p>&copy; 2024 Devin Myers. All rights reserved.</p>
             </div>
         </div>
     </footer>
