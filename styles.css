@@ -313,6 +313,169 @@ body.dark-mode .navbar {
     align-items: center;
     text-align: center;
     gap: 40px;
+    position: relative;
+}
+
+/* Chibi Poro */
+.chibi-poro {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    animation: poro-float 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes poro-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+.poro-body {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: var(--poro-white);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset -10px -10px 0 rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
+.poro-tuft {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--poro-white);
+    border-radius: 50% 50% 50% 0;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%) rotate(-45deg);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.poro-horn {
+    position: absolute;
+    width: 20px;
+    height: 35px;
+    background: var(--poro-brown);
+    border-radius: 50% 50% 0 0;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.poro-horn-left {
+    left: 35px;
+    top: 50px;
+    transform: rotate(-20deg);
+}
+
+.poro-horn-right {
+    right: 35px;
+    top: 50px;
+    transform: rotate(20deg);
+}
+
+.poro-eye {
+    position: absolute;
+    width: 18px;
+    height: 22px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    z-index: 3;
+    top: 75px;
+}
+
+.poro-eye-left {
+    left: 60px;
+}
+
+.poro-eye-right {
+    right: 60px;
+}
+
+.poro-tongue {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    background: var(--poro-pink);
+    border-radius: 0 0 50% 50%;
+    left: 50%;
+    top: 130px;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0 4px 8px rgba(255, 107, 157, 0.3);
+}
+
+.poro-foot {
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    background: var(--poro-brown);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    z-index: 0;
+    bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.poro-foot-left {
+    left: 50px;
+    transform: rotate(-10deg);
+}
+
+.poro-foot-right {
+    right: 50px;
+    transform: rotate(10deg);
+}
+
+.chibi-poro:hover {
+    animation: poro-bounce-happy 0.6s ease;
+}
+
+@keyframes poro-bounce-happy {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-20px) scale(1.1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
+    75% {
+        transform: translateY(-15px) scale(1.08);
+    }
+}
+
+/* Dark mode adjustments for Poro */
+body.dark-mode .poro-body {
+    background: #f5f5f5;
+    box-shadow: 
+        0 10px 30px rgba(123, 179, 240, 0.2),
+        inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .poro-tuft {
+    background: #f5f5f5;
+}
+
+body.dark-mode .poro-eye {
+    background: #0a0a0a;
 }
 
 .hero-content {
@@ -1007,6 +1170,70 @@ body.dark-mode .navbar {
         font-size: 2.8rem;
     }
     
+    .chibi-poro {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .poro-body {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .poro-tuft {
+        width: 22px;
+        height: 22px;
+        top: 15px;
+    }
+    
+    .poro-horn {
+        width: 15px;
+        height: 26px;
+    }
+    
+    .poro-horn-left {
+        left: 25px;
+        top: 38px;
+    }
+    
+    .poro-horn-right {
+        right: 25px;
+        top: 38px;
+    }
+    
+    .poro-eye {
+        width: 14px;
+        height: 17px;
+        top: 56px;
+    }
+    
+    .poro-eye-left {
+        left: 45px;
+    }
+    
+    .poro-eye-right {
+        right: 45px;
+    }
+    
+    .poro-tongue {
+        width: 30px;
+        height: 38px;
+        top: 98px;
+    }
+    
+    .poro-foot {
+        width: 26px;
+        height: 19px;
+    }
+    
+    .poro-foot-left {
+        left: 38px;
+    }
+    
+    .poro-foot-right {
+        right: 38px;
+    }
+    
     .about-content {
         grid-template-columns: 1fr;
         gap: 60px;
@@ -1042,6 +1269,70 @@ body.dark-mode .navbar {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2.2rem;
+    }
+    
+    .chibi-poro {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .poro-body {
+        width: 96px;
+        height: 96px;
+    }
+    
+    .poro-tuft {
+        width: 18px;
+        height: 18px;
+        top: 12px;
+    }
+    
+    .poro-horn {
+        width: 12px;
+        height: 21px;
+    }
+    
+    .poro-horn-left {
+        left: 20px;
+        top: 30px;
+    }
+    
+    .poro-horn-right {
+        right: 20px;
+        top: 30px;
+    }
+    
+    .poro-eye {
+        width: 11px;
+        height: 14px;
+        top: 45px;
+    }
+    
+    .poro-eye-left {
+        left: 36px;
+    }
+    
+    .poro-eye-right {
+        right: 36px;
+    }
+    
+    .poro-tongue {
+        width: 24px;
+        height: 30px;
+        top: 78px;
+    }
+    
+    .poro-foot {
+        width: 21px;
+        height: 15px;
+    }
+    
+    .poro-foot-left {
+        left: 30px;
+    }
+    
+    .poro-foot-right {
+        right: 30px;
     }
     
     .section-title {
