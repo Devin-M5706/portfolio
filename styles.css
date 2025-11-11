@@ -89,7 +89,7 @@ body {
 .theme-toggle {
     position: fixed;
     top: 24px;
-    right: 24px;
+    left: 24px;
     z-index: 1000;
 }
 
