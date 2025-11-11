@@ -4,8 +4,8 @@ const themeBtn = document.getElementById('themeBtn');
 const body = document.body;
 const themeIcon = themeBtn.querySelector('i');
 
-// Check for saved theme preference or default to light mode
-const savedTheme = localStorage.getItem('theme') || 'light';
+// Check for saved theme preference or default to dark mode
+const savedTheme = localStorage.getItem('theme') || 'dark';
 body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
 updateThemeIcon();
 

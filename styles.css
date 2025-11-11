@@ -6,42 +6,35 @@
 }
 
 :root {
-    /* Light Mode Colors - Poro Theme (Freljord Icy) */
-    --primary-color: #4A90E2;
+    /* Light Mode Colors - Blended Theme */
+    --primary-color: #5B9BD5;
     --secondary-color: #7BB3F0;
-    --accent-color: #FF6B9D;
-    --background-color: #F8FBFF;
+    --accent-color: #9B7BBF;
+    --background-color: #F5F7FA;
     --surface-color: #FFFFFF;
     --text-primary: #2C3E50;
     --text-secondary: #6B7C93;
-    --border-color: #E1ECF4;
-    --shadow-color: rgba(74, 144, 226, 0.1);
-    --shadow-hover: rgba(74, 144, 226, 0.2);
+    --border-color: #D1D9E6;
+    --shadow-color: rgba(91, 155, 213, 0.08);
+    --shadow-hover: rgba(91, 155, 213, 0.15);
     
-    /* Dark Mode Colors - Poro Theme (Night Freljord) */
+    /* Dark Mode Colors - Blended Theme */
     --dark-primary-color: #7BB3F0;
-    --dark-secondary-color: #A8D0F0;
-    --dark-accent-color: #FF9DBE;
-    --dark-background-color: #1A2332;
-    --dark-surface-color: #243447;
-    --dark-text-primary: #E8F4F8;
-    --dark-text-secondary: #B8D4E8;
-    --dark-border-color: #3A4A5C;
-    --dark-shadow-color: rgba(123, 179, 240, 0.2);
-    --dark-shadow-hover: rgba(123, 179, 240, 0.3);
-    
-    /* Poro Colors */
-    --poro-white: #FFFFFF;
-    --poro-blue: #4A90E2;
-    --poro-pink: #FF6B9D;
-    --poro-brown: #D4A574;
-    --poro-ice: #E8F4F8;
+    --dark-secondary-color: #9BC5F0;
+    --dark-accent-color: #B89DD9;
+    --dark-background-color: #0F1419;
+    --dark-surface-color: #1A1F2E;
+    --dark-text-primary: #E8EDF3;
+    --dark-text-secondary: #A8B5C8;
+    --dark-border-color: #2A3441;
+    --dark-shadow-color: rgba(123, 179, 240, 0.15);
+    --dark-shadow-hover: rgba(123, 179, 240, 0.25);
     
     /* Common Colors */
     --success-color: #4ECDC4;
     --warning-color: #FFD93D;
     --error-color: #FF6B6B;
-    --info-color: #4A90E2;
+    --info-color: #5B9BD5;
     
     /* Transitions */
     --transition-fast: 0.15s ease;
@@ -75,9 +68,9 @@ body {
     color: var(--text-primary);
     background-color: var(--background-color);
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(74, 144, 226, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.03) 0%, transparent 50%);
-    transition: background-color var(--transition-normal), color var(--transition-normal);
+        radial-gradient(circle at 20% 50%, rgba(91, 155, 213, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(155, 123, 191, 0.02) 0%, transparent 50%);
+    transition: background-color var(--transition-slow), color var(--transition-slow), border-color var(--transition-slow);
     overflow-x: hidden;
     font-feature-settings: "kern" 1;
     text-rendering: optimizeLegibility;
@@ -110,7 +103,7 @@ body {
 
 .theme-btn:hover {
     background: var(--primary-color);
-    color: var(--poro-white);
+    color: var(--surface-color);
     transform: scale(1.1) rotate(5deg);
     box-shadow: 0 6px 20px var(--shadow-hover);
 }
@@ -190,7 +183,7 @@ body.dark-mode .navbar {
 
 .nav-social-link:hover {
     background: var(--primary-color);
-    color: var(--poro-white);
+    color: var(--surface-color);
     transform: translateY(-3px) scale(1.1);
     box-shadow: 0 4px 16px var(--shadow-hover);
 }
@@ -260,7 +253,7 @@ body.dark-mode .navbar {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--background-color) 0%, var(--poro-ice) 100%);
+    background: linear-gradient(135deg, var(--background-color) 0%, var(--surface-color) 100%);
     position: relative;
     overflow: hidden;
     padding-top: 80px;
@@ -315,167 +308,6 @@ body.dark-mode .navbar {
     position: relative;
 }
 
-/* Chibi Poro */
-.chibi-poro {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
-    animation: poro-float 4s ease-in-out infinite;
-    z-index: 1;
-}
-
-@keyframes poro-float {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-10px) rotate(-2deg);
-    }
-    50% {
-        transform: translateY(-15px) rotate(0deg);
-    }
-    75% {
-        transform: translateY(-10px) rotate(2deg);
-    }
-}
-
-.poro-body {
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    background: var(--poro-white);
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.1),
-        inset -10px -10px 0 rgba(0, 0, 0, 0.05);
-    z-index: 1;
-}
-
-.poro-tuft {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: var(--poro-white);
-    border-radius: 50% 50% 50% 0;
-    left: 50%;
-    top: 20px;
-    transform: translateX(-50%) rotate(-45deg);
-    z-index: 2;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.poro-horn {
-    position: absolute;
-    width: 20px;
-    height: 35px;
-    background: var(--poro-brown);
-    border-radius: 50% 50% 0 0;
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.poro-horn-left {
-    left: 35px;
-    top: 50px;
-    transform: rotate(-20deg);
-}
-
-.poro-horn-right {
-    right: 35px;
-    top: 50px;
-    transform: rotate(20deg);
-}
-
-.poro-eye {
-    position: absolute;
-    width: 18px;
-    height: 22px;
-    background: #1a1a1a;
-    border-radius: 50%;
-    z-index: 3;
-    top: 75px;
-}
-
-.poro-eye-left {
-    left: 60px;
-}
-
-.poro-eye-right {
-    right: 60px;
-}
-
-.poro-tongue {
-    position: absolute;
-    width: 40px;
-    height: 50px;
-    background: var(--poro-pink);
-    border-radius: 0 0 50% 50%;
-    left: 50%;
-    top: 130px;
-    transform: translateX(-50%);
-    z-index: 2;
-    box-shadow: 0 4px 8px rgba(255, 107, 157, 0.3);
-}
-
-.poro-foot {
-    position: absolute;
-    width: 35px;
-    height: 25px;
-    background: var(--poro-brown);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    z-index: 0;
-    bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.poro-foot-left {
-    left: 50px;
-    transform: rotate(-10deg);
-}
-
-.poro-foot-right {
-    right: 50px;
-    transform: rotate(10deg);
-}
-
-.chibi-poro:hover {
-    animation: poro-bounce-happy 0.6s ease;
-}
-
-@keyframes poro-bounce-happy {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-    }
-    25% {
-        transform: translateY(-20px) scale(1.1);
-    }
-    50% {
-        transform: translateY(-10px) scale(1.05);
-    }
-    75% {
-        transform: translateY(-15px) scale(1.08);
-    }
-}
-
-/* Dark mode adjustments for Poro */
-body.dark-mode .poro-body {
-    background: #f5f5f5;
-    box-shadow: 
-        0 10px 30px rgba(123, 179, 240, 0.2),
-        inset -10px -10px 0 rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .poro-tuft {
-    background: #f5f5f5;
-}
-
-body.dark-mode .poro-eye {
-    background: #0a0a0a;
-}
 
 .hero-content {
     max-width: 800px;
@@ -561,13 +393,12 @@ body.dark-mode .poro-eye {
 
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--poro-white);
+    color: var(--surface-color);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 25px var(--shadow-hover);
-    animation: poro-wiggle 0.5s ease;
 }
 
 .btn-secondary {
@@ -578,17 +409,11 @@ body.dark-mode .poro-eye {
 
 .btn-secondary:hover {
     background: var(--primary-color);
-    color: var(--poro-white);
+    color: var(--surface-color);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 25px var(--shadow-hover);
-    animation: poro-wiggle 0.5s ease;
 }
 
-@keyframes poro-wiggle {
-    0%, 100% { transform: translateY(-3px) scale(1.05) rotate(0deg); }
-    25% { transform: translateY(-3px) scale(1.05) rotate(-2deg); }
-    75% { transform: translateY(-3px) scale(1.05) rotate(2deg); }
-}
 
 
 
@@ -969,7 +794,7 @@ body.dark-mode .poro-eye {
 
 .tech-tag:hover {
     background: var(--primary-color);
-    color: var(--poro-white);
+    color: var(--surface-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--shadow-hover);
 }
@@ -1026,7 +851,7 @@ body.dark-mode .poro-eye {
 
 .contact-item:hover i {
     background: var(--primary-color);
-    color: var(--poro-white);
+    color: var(--surface-color);
     transform: scale(1.1) rotate(5deg);
 }
 
@@ -1169,69 +994,6 @@ body.dark-mode .poro-eye {
         font-size: 2.8rem;
     }
     
-    .chibi-poro {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .poro-body {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .poro-tuft {
-        width: 22px;
-        height: 22px;
-        top: 15px;
-    }
-    
-    .poro-horn {
-        width: 15px;
-        height: 26px;
-    }
-    
-    .poro-horn-left {
-        left: 25px;
-        top: 38px;
-    }
-    
-    .poro-horn-right {
-        right: 25px;
-        top: 38px;
-    }
-    
-    .poro-eye {
-        width: 14px;
-        height: 17px;
-        top: 56px;
-    }
-    
-    .poro-eye-left {
-        left: 45px;
-    }
-    
-    .poro-eye-right {
-        right: 45px;
-    }
-    
-    .poro-tongue {
-        width: 30px;
-        height: 38px;
-        top: 98px;
-    }
-    
-    .poro-foot {
-        width: 26px;
-        height: 19px;
-    }
-    
-    .poro-foot-left {
-        left: 38px;
-    }
-    
-    .poro-foot-right {
-        right: 38px;
-    }
     
     .about-content {
         grid-template-columns: 1fr;
@@ -1270,69 +1032,6 @@ body.dark-mode .poro-eye {
         font-size: 2.2rem;
     }
     
-    .chibi-poro {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .poro-body {
-        width: 96px;
-        height: 96px;
-    }
-    
-    .poro-tuft {
-        width: 18px;
-        height: 18px;
-        top: 12px;
-    }
-    
-    .poro-horn {
-        width: 12px;
-        height: 21px;
-    }
-    
-    .poro-horn-left {
-        left: 20px;
-        top: 30px;
-    }
-    
-    .poro-horn-right {
-        right: 20px;
-        top: 30px;
-    }
-    
-    .poro-eye {
-        width: 11px;
-        height: 14px;
-        top: 45px;
-    }
-    
-    .poro-eye-left {
-        left: 36px;
-    }
-    
-    .poro-eye-right {
-        right: 36px;
-    }
-    
-    .poro-tongue {
-        width: 24px;
-        height: 30px;
-        top: 78px;
-    }
-    
-    .poro-foot {
-        width: 21px;
-        height: 15px;
-    }
-    
-    .poro-foot-left {
-        left: 30px;
-    }
-    
-    .poro-foot-right {
-        right: 30px;
-    }
     
     .section-title {
         font-size: 2.2rem;
