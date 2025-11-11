@@ -196,30 +196,6 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Enhanced Parallax Effect for Floating Pokéballs
-let ticking = false;
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const pokeballs = document.querySelectorAll('.pokeball');
-    
-    pokeballs.forEach((pokeball, index) => {
-        const speed = 0.3 + (index * 0.15);
-        const yPos = -(scrolled * speed);
-        const rotation = scrolled * 0.05;
-        pokeball.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
-    });
-    
-    ticking = false;
-}
-
-function requestParallaxUpdate() {
-    if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-    }
-}
-
-window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 
 // Enhanced Typing Effect for Hero Title
 function typeWriter(element, text, speed = 100) {
@@ -361,32 +337,8 @@ function showNotification(message, type = 'info') {
 
 // Enhanced Particle Effect for Hero Section
 function createParticles() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    
-    // Remove existing particles
-    const existingParticles = hero.querySelectorAll('.particle');
-    existingParticles.forEach(particle => particle.remove());
-    
-    for (let i = 0; i < 25; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${4 + Math.random() * 3}px;
-            height: ${4 + Math.random() * 3}px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 50%;
-            opacity: 0.4;
-            pointer-events: none;
-            animation: particle-float ${4 + Math.random() * 3}s linear infinite;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 2}s;
-            filter: blur(0.5px);
-        `;
-        hero.appendChild(particle);
-    }
+    // Particles disabled for minimalist design
+    return;
 }
 
 // Enhanced particle animation styles
@@ -419,8 +371,7 @@ particleStyles.textContent = `
 `;
 document.head.appendChild(particleStyles);
 
-// Initialize particles when page loads
-window.addEventListener('load', createParticles);
+// Particles disabled for minimalist design
 
 // Enhanced hover effects for project cards
 document.querySelectorAll('.project-card').forEach(card => {
@@ -669,7 +620,7 @@ document.addEventListener('keydown', (e) => {
     
     if (konamiCode.join(',') === konamiSequence.join(',')) {
         // Enhanced Konami code activation!
-        showNotification('🎉 You found the secret! Pokémon Master! 🎉', 'success');
+        showNotification('🎉 You found the secret! 🎉', 'success');
         
         // Add enhanced fun effects
         document.body.style.animation = 'rainbow 3s infinite';
@@ -740,7 +691,7 @@ rainbowStyles.textContent = `
 document.head.appendChild(rainbowStyles);
 
 // Enhanced console message
-console.log('🎮 Enhanced Pokémon Portfolio loaded successfully! Gotta catch \'em all! 🌿✨');
+console.log('✨ Portfolio loaded successfully!');
 console.log('💡 Pro tip: Try the Konami code (↑↑↓↓←→←→BA) for a surprise!');
 console.log('🎨 Theme toggle available in the top right corner');
 console.log('📱 Fully responsive and accessible design');
@@ -883,11 +834,7 @@ document.head.appendChild(circuitPulseStyles);
 
 // Initialize interactive background
 window.addEventListener('load', () => {
-    createMatrixRain();
-    createFloatingElements();
-    createTechParticles();
-    addInteractiveHoverEffects();
-    createCircuitConnections();
+    // Background effects disabled for minimalist design
     
     // Theme change event listener for background adjustments
     window.addEventListener('themeChange', (event) => {
